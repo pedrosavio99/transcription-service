@@ -5,7 +5,7 @@ go 1.21
 require (
 	github.com/alphacep/vosk-api/go v0.3.45
 	github.com/gin-gonic/gin v1.10.0
-	github.com/imkira/go-libav v0.0.0-20180115004737-6ea2b4c24598
+	github.com/giorgisio/go-libav v0.0.0-20200807153303-a94c026c2173 // Substituído
 )
 
 require (
@@ -29,3 +29,6 @@ require (
 	golang.org/x/sys v0.20.0 // indirect
 	golang.org/x/text v0.15.0 // indirect
 )
+
+// Excluir commit problemático para evitar conflitos transitivos
+exclude github.com/imkira/go-libav v0.0.0-20180115004737-6ea2b4c24598

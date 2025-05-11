@@ -1,20 +1,19 @@
 package main
 
 import (
-	"fmt"
-	"log"
-	"net/http"
-	"os"
-	"os/exec"
-	"path/filepath"
-	"time"
+    "fmt"
+    "log"
+    "net/http"
+    "os"
+    "os/exec"
+    "path/filepath"
+    "time"
 
-	"github.com/gin-gonic/gin"
-	vosk "github.com/alphacep/vosk-api/go"
-	"github.com/imkira/go-libav/avcodec"
-	"github.com/imkira/go-libav/avformat"
+    "github.com/gin-gonic/gin"
+    vosk "github.com/alphacep/vosk-api/go"
+    "github.com/giorgisio/go-libav/avcodec" // Alterado
+    "github.com/giorgisio/go-libav/avformat" // Alterado
 )
-
 func main() {
 	// Configurar logging
 	log.SetFlags(log.LstdFlags | log.Lshortfile)
