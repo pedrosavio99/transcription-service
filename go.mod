@@ -30,8 +30,8 @@ require (
 	golang.org/x/text v0.15.0 // indirect
 )
 
-// Substituir github.com/giorgisio/go-libav por github.com/cvley/go-libav
-replace github.com/giorgisio/go-libav => github.com/cvley/go-libav v0.0.0-20200807153303-a94c026c2173
+// Substituir github.com/giorgisio/go-libav por github.com/pixiv/go-libav com commit válido
+replace github.com/giorgisio/go-libav => github.com/pixiv/go-libav v0.0.0-20201112032136-6e7b4b3b3e4b
 
 // Excluir commit problemático para evitar conflitos transitivos
 exclude github.com/imkira/go-libav v0.0.0-20180115004737-6ea2b4c24598

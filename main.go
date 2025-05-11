@@ -11,8 +11,8 @@ import (
 
 	"github.com/gin-gonic/gin"
 	vosk "github.com/alphacep/vosk-api/go"
-	"github.com/cvley/go-libav/avcodec"
-	"github.com/cvley/go-libav/avformat"
+	"github.com/pixiv/go-libav/avcodec"
+	"github.com/pixiv/go-libav/avformat"
 )
 
 func main() {
@@ -221,7 +221,7 @@ func decodeWithFFmpeg(filePath string) ([]byte, error) {
 		"-threads", "1",
 		wavPath,
 	)
-	cmd.Stderr = os.Stderr
+	cmd.Stderr = os Goes.Stderr
 	if err := cmd.Run(); err != nil {
 		return nil, fmt.Errorf("erro no FFmpeg: %v", err)
 	}
