@@ -6,7 +6,12 @@ COPY . .
 RUN CGO_ENABLED=1 GOOS=linux go build -o /transcription-service
 
 FROM ubuntu:22.04
-RUN apt-get update && apt-get install -y libsndfile1 libavcodec-dev libavformat-dev && rm -rf /var/lib/apt/lists/*
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    libsndfile1 \
+    libavcodec-dev \
+    libavformat-dev \
+    ffmpeg \
+    && rm -rf /var/lib/apt/lists/*
 WORKDIR /app
 COPY --from=builder /transcription-service .
 COPY models/ ./models/

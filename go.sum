@@ -1,3 +1,5 @@
+github.com/alphacep/vosk-api/go v0.3.45 h1:4F0vR2yS8GAnpB3VqS1JEBsN0O7w1p2yEKNqK8Jq/5Q=
+github.com/alphacep/vosk-api/go v0.3.45/go.mod h1:4Y7Yb3d9b7pW3Zo+zjLhT6+pS8Gso9j9XqI5zCjKXgQ=
 github.com/bytedance/sonic v1.11.6 h1:ezp9xFXrKI3fKce1DF3gilr61wS+Skog3nI8fA2uV6s=
 github.com/bytedance/sonic v1.11.6/go.mod h1:W/3Q3CIrG4f9S/4r3kPboT7/1c3v0rLgy7l4f9c6+Eg=
 github.com/bytedance/sonic/loader v0.1.1 h1:c+e5Pt1k/cy5wMveRDyk2X4V9hF4g7jZOrjo/4iy2Sw=
@@ -6,8 +8,6 @@ github.com/cloudwego/base64x v0.1.4 h1:jwCgWpFanWmN8voIUHa2rtzmkd5HYfc3oKhA0r+0T
 github.com/cloudwego/base64x v0.1.4/go.mod h1:0zlkqH0I0Y0IQQP18V0rUOH1+uXCVYneJCqvi8AuLKY=
 github.com/cloudwego/iasm v0.2.0 h1:1KwhgVTDw8YaX5oxxL2Vgy1+RXZSh3g1rryT4QHPd98=
 github.com/cloudwego/iasm v0.2.0/go.mod h1:8rYbxo1Jes0TO4+0GynV2B7Rd/6gClT2UhpF5k6YsS4=
-github.com/davecgh/go-spew v1.1.1 h1:vj9j/u1bqnvCEfJOwUhtlOARqs3+rkHYY13jYWTU97c=
-github.com/davecgh/go-spew v1.1.1/go.mod h1:J7Y8YcW2NihsgmVo/mv3lAwl/skON4iLHjSsI+c5H38=
 github.com/gabriel-vasile/mimetype v1.4.3 h1:TRWk7se+/R0RmtM7EApqe30AMv7T2CEgM3/qrVlhV/M=
 github.com/gabriel-vasile/mimetype v1.4.3/go.mod h1:umr8mfFqzZm/oPLBR/6x+dd8y63uIpgYg9UJvDJ2rSg=
 github.com/gin-contrib/sse v0.1.0 h1:Y/yl/+YNO8GZSjAhjMsSuLt29uWRFHdHYUb5lYOV9qE=
@@ -30,10 +30,6 @@ github.com/leodido/go-urn v1.4.0 h1:WT9HwE9+1YLW69fN3H1Hr2uR2iCsK8Zm4k7EWJ6R60A=
 github.com/leodido/go-urn v1.4.0/go.mod h1:7A9qKtoUTl0rPCKHdwF6kX0Li9W3kF2nbkO3rri1c3w=
 github.com/mattn/go-isatty v0.0.20 h1:xfD0iDuEKnDkl03q4limB+vH+GxLEtL/jb4xVJSWWEY=
 github.com/mattn/go-isatty v0.0.20/go.mod h1:W+V8PltTTMOvKvAeJH7IuucS94S2C6jfK/D7dTCTo3Y=
-github.com/pmezard/go-difflib v1.0.0 h1:4DBwDE0NGyQoBHbLQYPwSUPoCMWR5BEzIk/f1lZbAQM=
-github.com/pmezard/go-difflib v1.0.0/go.mod h1:iKH77koFhYxTK1pcRnkKkqfTogsbg7gZNVY4sRDYZ/4=
-github.com/stretchr/testify v1.8.4 h1:CcVxjf3Q8PM0mHUKJCdn+eZZtm5yQwehR5yeSVQQcUk=
-github.com/stretchr/testify v1.8.4/go.mod h1:sz/lmYIOXD/1dqDmKjjqLyZ2RngseejIcXlSw2iwfAo=
 github.com/twitchyliquid64/golang-asm v0.15.1 h1:SU5vSMR7hnwNxjOi1dEjv8uU5rPzcnwIlpDhWtpH GbI=
 github.com/twitchyliquid64/golang-asm v0.15.1/go.mod h1:a1lVb/DtPvCB8fslRZhAngC2+aY1QWCk3Cedj/Gdt08=
 github.com/ugorji/go/codec v1.2.12 h1:9LC83z693UF5GtASOx3+Edp+7SYi2qX9kvv2zFYH1Oc=
@@ -47,4 +43,4 @@ golang.org/x/net v0.25.0/go.mod h1:JkAGAh7GE1cyyO5Tf8C3fV5lDMOvTy9L4JmpQk02dms=
 golang.org/x/sys v0.20.0 h1:Od9JTbYCk261bKm4MJOJ5Cd8dF57W3rdUgjf6b shinY=
 golang.org/x/sys v0.20.0/go.mod h1:/VUhepiaJMQUp4+oa/7Zr1D23ma6VTLIYjOOTFZPUcA=
 golang.org/x/text v0.15.0 h1:h1V/4gwt21PsKCxNUwkv7H1lN3io7+Og6h9k5g4+8PQ=
-golang.org/x/text v0.15.0/go.mod h1:18ZOQIKpY8N
+golang.org/x/text v0.15.0/go.mod h1:18ZOQIKpY8NJVqYksKHtTdi31H5itFRjB5/qKTNYzSU=

@@ -5,6 +5,7 @@ import (
 	"log"
 	"net/http"
 	"os"
+	"os/exec"
 	"path/filepath"
 	"time"
 
@@ -80,13 +81,19 @@ func main() {
 		log.Printf("Arquivo temporário salvo: %s", tmpFilePath)
 		defer os.Remove(tmpFilePath)
 
-		// Decodificar WebM para PCM com go-libav
+		// Decodificar WebM para PCM
 		convertStart := time.Now()
 		pcmData, err := decodeWebM(tmpFilePath)
 		if err != nil {
-			log.Printf("Erro na decodificação com go-libav: %v", err)
-			c.JSON(http.StatusInternalServerError, gin.H{"error": fmt.Sprintf("Erro na decodificação de áudio: %v", err)})
-			return
+			log.Printf("Erro na decodificação: %v", err)
+			// Fallback para FFmpeg
+			log.Println("Tentando FFmpeg como fallback")
+			pcmData, err = decodeWithFFmpeg(tmpFilePath)
+			if err != nil {
+				log.Printf("Erro no fallback FFmpeg: %v", err)
+				c.JSON(http.StatusInternalServerError, gin.H{"error": fmt.Sprintf("Erro na decodificação de áudio: %v", err)})
+				return
+			}
 		}
 		log.Printf("Decodificação concluída em %v", time.Since(convertStart))
 
@@ -139,19 +146,16 @@ func main() {
 
 // decodeWebM decodifica WebM para PCM usando go-libav
 func decodeWebM(filePath string) ([]byte, error) {
-	// Abrir arquivo WebM
 	ctx, err := avformat.OpenInput(filePath, nil, nil)
 	if err != nil {
 		return nil, fmt.Errorf("erro ao abrir arquivo: %v", err)
 	}
 	defer ctx.CloseInput()
 
-	// Encontrar informações do stream
 	if err := ctx.FindStreamInfo(nil); err != nil {
 		return nil, fmt.Errorf("erro ao encontrar stream: %v", err)
 	}
 
-	// Encontrar stream de áudio
 	var audioStream *avformat.Stream
 	for _, stream := range ctx.Streams() {
 		if stream.CodecParameters().MediaType() == avcodec.MediaTypeAudio {
@@ -163,7 +167,6 @@ func decodeWebM(filePath string) ([]byte, error) {
 		return nil, fmt.Errorf("nenhum stream de áudio encontrado")
 	}
 
-	// Configurar codec
 	codec := avcodec.FindDecoder(audioStream.CodecParameters().CodecID())
 	if codec == nil {
 		return nil, fmt.Errorf("codec não encontrado")
@@ -181,14 +184,12 @@ func decodeWebM(filePath string) ([]byte, error) {
 		return nil, fmt.Errorf("erro ao abrir codec: %v", err)
 	}
 
-	// Buffer para PCM
 	var pcmData []byte
 	packet := avcodec.NewPacket()
 	defer packet.Free()
 	frame := avcodec.NewFrame()
 	defer frame.Free()
 
-	// Decodificar
 	for ctx.ReadFrame(packet) == nil {
 		if packet.StreamIndex() != audioStream.Index() {
 			continue
@@ -197,11 +198,38 @@ func decodeWebM(filePath string) ([]byte, error) {
 			continue
 		}
 		for codecCtx.ReceiveFrame(frame) == nil {
-			// Converter para PCM (16-bit, 16 kHz, mono)
 			samples := frame.Data()[0]
 			pcmData = append(pcmData, samples...)
 		}
 	}
 
 	return pcmData, nil
+}
+
+// decodeWithFFmpeg usa FFmpeg como fallback
+func decodeWithFFmpeg(filePath string) ([]byte, error) {
+	wavPath := filePath + ".wav"
+	cmd := exec.Command(
+		"ffmpeg",
+		"-i", filePath,
+		"-f", "wav",
+		"-acodec", "pcm_s16le",
+		"-ac", "1",
+		"-ar", "16000",
+		"-t", "30",
+		"-loglevel", "error",
+		"-threads", "1",
+		wavPath,
+	)
+	cmd.Stderr = os.Stderr
+	if err := cmd.Run(); err != nil {
+		return nil, fmt.Errorf("erro no FFmpeg: %v", err)
+	}
+	defer os.Remove(wavPath)
+
+	data, err := os.ReadFile(wavPath)
+	if err != nil {
+		return nil, fmt.Errorf("erro ao ler WAV: %v", err)
+	}
+	return data, nil
 }
