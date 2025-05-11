@@ -1,13 +1,9 @@
 # Usar imagem base com Go e dependências necessárias
 FROM golang:1.21 AS builder
 
-# Instalar dependências para FFmpeg e bibliotecas C necessárias
+# Instalar dependências para FFmpeg
 RUN apt-get update && apt-get install -y \
     ffmpeg \
-    libavcodec-dev \
-    libavformat-dev \
-    libavutil-dev \
-    libswresample-dev \
     pkg-config \
     && rm -rf /var/lib/apt/lists/*
 
@@ -29,7 +25,7 @@ RUN CGO_ENABLED=1 GOOS=linux go build -o /transcription-service
 # Imagem final menor
 FROM ubuntu:22.04
 
-# Instalar FFmpeg e bibliotecas necessárias na imagem final
+# Instalar FFmpeg na imagem final
 RUN apt-get update && apt-get install -y \
     ffmpeg \
     && rm -rf /var/lib/apt/lists/*
