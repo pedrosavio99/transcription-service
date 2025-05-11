@@ -1,4 +1,4 @@
-github.com/alphacep/vosk-api/go v0.3.45 h1:2M2CNh0N2zPq3oO0ZxW7dK0/XsQJBuZ0g2nVBpH8Owk=
+github.com/alphacep/vosk-api/go v0.3.45 h1:kVRykekkz/32tLzIIxbCckLoetDOXyHW5bIois4Ww8k=
 github.com/alphacep/vosk-api/go v0.3.45/go.mod h1:2YbAm1A1v9d8wPN4d9dYk3cfZ4gRAR6zSrt+2iL2xA4=
 github.com/bytedance/sonic v1.11.6 h1:wn/jrfy6QD5f9rfrzvYf1b3y3bKXH9yM3zNBPQfmULc=
 github.com/bytedance/sonic v1.11.6/go.mod h1:W/3QfyHwDvH8Y/3iJ2fQ1Klje6sdf9r3nD4jhe4hSbk=

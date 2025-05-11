@@ -20,7 +20,7 @@ RUN go mod tidy && go mod download
 COPY . .
 
 # Compilar o binário com CGO habilitado
-RUN CGO_ENABLED=1 GOOS=linux go build -o /transcription-service
+RUN CGO_ENABLED=1 GOOS=linux GOFLAGS="-mod=readonly" go build -o /transcription-service
 
 # Imagem final menor
 FROM ubuntu:22.04
