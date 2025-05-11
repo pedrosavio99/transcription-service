@@ -13,8 +13,8 @@ WORKDIR /app
 # Copiar go.mod e go.sum primeiro para aproveitar o cache
 COPY go.mod go.sum ./
 
-# Baixar dependências
-RUN go mod download
+# Atualizar go.sum e baixar dependências
+RUN go mod tidy && go mod download
 
 # Copiar o restante do código
 COPY . .
