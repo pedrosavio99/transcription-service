@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Transcrição de Áudio</title>
+</head>
+<body>
+    <h1>Transcrição de Áudio</h1>
+    <button id="recordButton">Gravar</button>
+    <p id="status">Pronto para gravar</p>
+    <p id="transcription">Transcrição aparecerá aqui</p>
+
+    <script>
+        let isRecording = false;
+        let mediaRecorder;
+        let audioBlob;
+        const recordButton = document.getElementById('recordButton');
+        const status = document.getElementById('status');
+        const transcription = document.getElementById('transcription');
+
+        recordButton.addEventListener('click', async () => {
+            if (!isRecording) {
+                // Iniciar gravação
+                try {
+                    const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+                    mediaRecorder = new MediaRecorder(stream, { mimeType: 'audio/webm;codecs=opus' });
+                    const chunks = [];
+                    mediaRecorder.ondataavailable = e => chunks.push(e.data);
+                    mediaRecorder.onstop = async () => {
+                        audioBlob = new Blob(chunks, { type: 'audio/webm' });
+                        status.textContent = 'Gravação concluída, enviando...';
+
+                        // Enviar para API
+                        const formData = new FormData();
+                        formData.append('file', audioBlob, 'audio.webm');
+                        formData.append('lang', 'en');
+
+                        const controller = new AbortController();
+                        const timeoutId = setTimeout(() => controller.abort(), 15000); // Timeout de 15s
+
+                        try {
+                            const response = await fetch('/transcribe', {
+                                method: 'POST',
+                                body: formData,
+                                signal: controller.signal
+                            });
+                            clearTimeout(timeoutId);
+                            const result = await response.json();
+                            if (response.ok) {
+                                transcription.textContent = `Transcrição: ${result.transcribed_text} (Tempo: ${result.time_total_ms}ms)`;
+                                status.textContent = 'Transcrição concluída';
+                            } else {
+                                transcription.textContent = `Erro: ${result.error}`;
+                                status.textContent = 'Erro na transcrição';
+                            }
+                        } catch (err) {
+                            transcription.textContent = `Erro: ${err.message}`;
+                            status.textContent = 'Erro na transcrição';
+                        }
+                    };
+                    mediaRecorder.start();
+                    isRecording = true;
+                    recordButton.textContent = 'Parar';
+                    status.textContent = 'Gravando...';
+                } catch (err) {
+                    status.textContent = `Erro ao acessar microfone: ${err.message}`;
+                }
+            } else {
+                // Parar gravação
+                mediaRecorder.stop();
+                isRecording = false;
+                recordButton.textContent = 'Gravar';
+            }
+        });
+    </script>
+</body>
+</html>
