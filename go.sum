@@ -10,7 +10,7 @@ github.com/cloudwego/iasm v0.2.0 h1:1KNIy1I1H9hNNFjv9ZaPtR8gY36P4VhoqlU6g2k4rLjM
 github.com/cloudwego/iasm v0.2.0/go.mod h1:8rXZaNYT2n97u3LusjvSCY7TJ3Q7hV2EjjJR3nIOrfU=
 github.com/gabriel-vasile/mimetype v1.4.3 h1:TRWk7se+TOjCYfJ3ee86b6sXhNacI4LxxCE8EhfviN0=
 github.com/gabriel-vasile/mimetype v1.4.3/go.mod h1:QNceU/WN6JneJ7oA63C/5C6b4oMb3WmV3Q3Oirx4hH4=
-github.com/gin-contrib/sse v0.1.0 h1:Y/yk2nx0iZa/+VfKkKqK09c4Xvndz7OwzSlnYIX4B70=
+github.com/gin-contrib/sse v0.1.0 h1:Y/yk2nx0iZa/+VfKkK09c4Xvndz7OwzSlnYIX4B70=
 github.com/gin-contrib/sse v0.1.0/go.mod h1:RHrZQHXnP2xjPF+u1gW/2HnVO7nvIa9PG3Gm+fLHvGI=
 github.com/gin-gonic/gin v1.10.0 h1:nTuy25G0+8l5NSK7+8Y5B391CYLoVZwffElCsk3l7m4=
 github.com/gin-gonic/gin v1.10.0/go.mod h1:KtPtHu9i+B7p2hcKknH7PPKj7Y4h6Xu6jBwwLZ8nyX8=
