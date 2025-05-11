@@ -5,14 +5,14 @@ go 1.21
 require (
 	github.com/alphacep/vosk-api/go v0.3.45
 	github.com/gin-gonic/gin v1.10.0
-	github.com/giorgisio/go-libav v0.0.0-20200807153303-a94c026c2173 // Substituído
+	github.com/giorgisio/go-libav v0.0.0-20200807153303-a94c026c2173
 )
 
 require (
 	github.com/bytedance/sonic v1.11.6 // indirect
 	github.com/bytedance/sonic/loader v0.1.1 // indirect
 	github.com/cloudwego/base64x v0.1.4 // indirect
-	github.com/cloudwego/iasm v0.2.0 // indirect
+	github.com/cloudwego/iasm v0.0.0 // indirect
 	github.com/gabriel-vasile/mimetype v1.4.3 // indirect
 	github.com/gin-contrib/sse v0.1.0 // indirect
 	github.com/go-playground/locales v0.14.1 // indirect
@@ -29,6 +29,9 @@ require (
 	golang.org/x/sys v0.20.0 // indirect
 	golang.org/x/text v0.15.0 // indirect
 )
+
+// Substituir github.com/giorgisio/go-libav por github.com/cvley/go-libav
+replace github.com/giorgisio/go-libav => github.com/cvley/go-libav v0.0.0-20200807153303-a94c026c2173
 
 // Excluir commit problemático para evitar conflitos transitivos
 exclude github.com/imkira/go-libav v0.0.0-20180115004737-6ea2b4c24598
