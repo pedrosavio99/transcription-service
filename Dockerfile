@@ -10,9 +10,8 @@ RUN apt-get update && apt-get install -y \
 # Definir diretório de trabalho
 WORKDIR /app
 
-# Copiar go.mod, go.sum e vendor (se existir) primeiro para aproveitar o cache
+# Copiar go.mod e go.sum primeiro para aproveitar o cache
 COPY go.mod go.sum ./
-COPY vendor ./vendor
 
 # Atualizar go.sum e baixar dependências
 RUN go mod tidy && go mod download
@@ -20,11 +19,8 @@ RUN go mod tidy && go mod download
 # Copiar o restante do código
 COPY . .
 
-# Regenerar vendor antes do build para garantir consistência
-RUN go mod vendor
-
-# Compilar o binário com CGO habilitado, usando dependências do vendor
-RUN CGO_ENABLED=1 GOOS=linux go build -mod=vendor -o /transcription-service
+# Compilar o binário com CGO habilitado
+RUN CGO_ENABLED=1 GOOS=linux go build -o /transcription-service
 
 # Imagem final menor
 FROM ubuntu:22.04
