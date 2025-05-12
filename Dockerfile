@@ -12,6 +12,7 @@ RUN apt-get update && apt-get install -y \
     unzip vosk-linux-x86_64-0.3.45.zip && \
     mv vosk-linux-x86_64-0.3.45/libvosk.so /usr/lib/ && \
     mv vosk-linux-x86_64-0.3.45/vosk_api.h /usr/include/ && \
+    ldconfig && \
     rm -rf vosk-linux-x86_64-0.3.45.zip vosk-linux-x86_64-0.3.45 && \
     apt-get remove -y wget unzip && \
     apt-get autoremove -y && \
@@ -42,6 +43,7 @@ RUN apt-get update && apt-get install -y \
 
 # Copiar libvosk.so da etapa de build
 COPY --from=builder /usr/lib/libvosk.so /usr/lib/
+RUN ldconfig
 
 # Copiar o binário da etapa de build
 COPY --from=builder /transcription-service /transcription-service
