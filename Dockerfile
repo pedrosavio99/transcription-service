@@ -13,14 +13,14 @@ WORKDIR /app
 # Copiar go.mod e go.sum primeiro para aproveitar o cache
 COPY go.mod go.sum ./
 
-# Atualizar go.sum e baixar dependências
-RUN go mod tidy && go mod download
+# Limpar cache de módulos e baixar dependências
+RUN go clean -modcache && go mod tidy && go mod download
 
 # Copiar o restante do código
 COPY . .
 
 # Compilar o binário com CGO habilitado
-RUN CGO_ENABLED=1 GOOS=linux GOFLAGS="-mod=readonly" go build -o /transcription-service
+RUN CGO_ENABLED=1 GOOS=linux go build -o /transcription-service
 
 # Imagem final menor
 FROM ubuntu:22.04

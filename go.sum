@@ -12,7 +12,7 @@ github.com/gabriel-vasile/mimetype v1.4.3 h1:TRWk7se+TOjCYfJ3ee86b6sXhNacI4LxxCE
 github.com/gabriel-vasile/mimetype v1.4.3/go.mod h1:QNceU/WN6JneJ7oA63C/5C6b4oMb3WmV3Q3Oirx4hH4=
 github.com/gin-contrib/sse v0.1.0 h1:Y/yk2nx0iZa/+VfKkK09c4Xvndz7OwzSlnYIX4B70=
 github.com/gin-contrib/sse v0.1.0/go.mod h1:RHrZQHXnP2xjPF+u1gW/2HnVO7nvIa9PG3Gm+fLHvGI=
-github.com/gin-gonic/gin v1.10.0 h1:nTuy25G0+8l5NSK7+8Y5B391CYLoVZwffElCsk3l7m4=
+github.com/gin-gonic/gin v1.10.0 h1:nTuyha1TYqgedzytsKYqna+DfLos46nTv2ygFy86HFU=
 github.com/gin-gonic/gin v1.10.0/go.mod h1:KtPtHu9i+B7p2hcKknH7PPKj7Y4h6Xu6jBwwLZ8nyX8=
 github.com/go-playground/locales v0.14.1 h1:EWaQ/wswjILBt4bwy3s7TYzDZZ+7R2b2t2kzyWktkbw=
 github.com/go-playground/locales v0.14.1/go.mod h1:hxrqLVvrK65+RwOr/3qa4qFTtK4W7iDA2y3g0ewgV30=
