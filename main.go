@@ -10,7 +10,7 @@ import (
 	"time"
 
 	"github.com/gin-gonic/gin"
-	vosk "github.com/alphacep/vosk-api/go"
+	"github.com/alphacep/vosk-api/go/vosk"
 )
 
 func main() {

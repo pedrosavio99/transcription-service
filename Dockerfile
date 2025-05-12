@@ -1,11 +1,21 @@
 # Usar imagem base com Go e dependências necessárias
 FROM golang:1.21 AS builder
 
-# Instalar dependências para FFmpeg
+# Instalar dependências para FFmpeg e Vosk
 RUN apt-get update && apt-get install -y \
     ffmpeg \
     pkg-config \
-    && rm -rf /var/lib/apt/lists/*
+    wget \
+    unzip \
+    build-essential \
+    && wget https://github.com/alphacep/vosk-api/releases/download/v0.3.45/vosk-linux-x86_64-0.3.45.zip && \
+    unzip vosk-linux-x86_64-0.3.45.zip && \
+    mv vosk-linux-x86_64-0.3.45/libvosk.so /usr/lib/ && \
+    mv vosk-linux-x86_64-0.3.45/vosk_api.h /usr/include/ && \
+    rm -rf vosk-linux-x86_64-0.3.45.zip vosk-linux-x86_64-0.3.45 && \
+    apt-get remove -y wget unzip && \
+    apt-get autoremove -y && \
+    rm -rf /var/lib/apt/lists/*
 
 # Definir diretório de trabalho
 WORKDIR /app
@@ -29,6 +39,9 @@ FROM ubuntu:22.04
 RUN apt-get update && apt-get install -y \
     ffmpeg \
     && rm -rf /var/lib/apt/lists/*
+
+# Copiar libvosk.so da etapa de build
+COPY --from=builder /usr/lib/libvosk.so /usr/lib/
 
 # Copiar o binário da etapa de build
 COPY --from=builder /transcription-service /transcription-service
